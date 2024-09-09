@@ -1,11 +1,14 @@
 const express = require("express")
 const router = express.Router()
-const {createuser} = require("../controller/usercontroller.js")
+const multer = require("multer")
+const { createuser } = require("../controller/usercontroller.js")
+const upload = multer({ storage: multer.diskStorage({}), });
 
-router.get('/test' , (req,res)=>{
-    return res.send('tarun')
-})
+router.post('/createUserdata',upload.single("profileImg"), createuser)
 
 
+router.all('/*', (req, res) => {
+    return res.status(404).send({ status: false, msg: "Invalid URL" });
+});
 
 module.exports = router
