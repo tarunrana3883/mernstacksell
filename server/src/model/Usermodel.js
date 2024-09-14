@@ -15,10 +15,15 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String, required: [true, "Please provide the Password"],
         validate: [ValidPassword, "Please provide the  Valid Password"], trim: true
+    },
+    isdeleted: {
+        type: Boolean, default: false
     }
+
+
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema)  
+module.exports = mongoose.model('User', userSchema)
 
 
 

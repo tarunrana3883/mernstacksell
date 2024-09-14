@@ -22,7 +22,7 @@ exports.createuser = async (req, res) => {
          if(data.password==undefined){ return res.status(400).send({ status:false , message:"provide password first!" })
          }
 
-        if(ImageData== undefined) {
+        if(ImageData == undefined) {
             const passbcrypt = await bcrypt.hash(data.password, 5)
             data.password = passbcrypt
             const createdata = await userModel.create(data);
@@ -44,12 +44,17 @@ exports.createuser = async (req, res) => {
 
 exports.getApI = async (req, res) => {
     try {
-        const data = await userModel.find()
-        return res.send({ Status: true, msg: "Get All the data", Data: data })
+
+        const data = await Usermodel.find({ isdeleted: false })
+            .sort({ _id: -1 }).select({ _id: 1, name: 1, email: 1, password: 1 })
+
+        return res.send({ status: true, msg: "Get All the data", Data: data })
     }
+
     catch (e) {
-        return res.status(500).send({ status: false, msg: e.message })
-    }
+        return res.status(500).send({ status: false, msg: e.message })
+
+    }
 }
 
 exports.LogInUser = async (req, res) => {
@@ -82,4 +87,35 @@ exports.LogInUser = async (req, res) => {
     catch (err) { return  errorhandling(err,res)}
 }
 
+exports.updateApi = async(req,res)=>{
+    try{
+        let data = req.body
+        const updatedata = await Usermodel.findOneAndUpdate({
+            _id : req.UserId
+        
+        } , {$set:{name:data.name}} , {new : true}
+    )
+    return res.status(200).send({status : true , msg:"data updated sucessfully" , data:updatedata })
+
+    }
+    catch (err) { return  errorhandling(err,res)}
+}
+
+
+exports.deleteApi = async (req, res) => {
+    try {
+        let id = req.params.userid
+            const deletedUser = await Usermodel.findOneAndUpdate(
+
+            { _id: id },
+            { $set: { isdeleted: true } },
+            { new: true }
+
+        )
+        
+        return res.status(200).send({ status: true, msg: "Delete Api Created", data: deletedUser })
+    }
+    catch (err) { return errorhandling(err, res) }
+
+}
 
