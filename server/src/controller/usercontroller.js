@@ -1,6 +1,4 @@
 const{errorhandling} = require('../Errorhandling/errorhandling.js')
-const Usermodel = require('../model/Usermodel.js')
-
 const userModel = require('../model/Usermodel.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -102,20 +100,20 @@ exports.updateApi = async(req,res)=>{
 }
 
 
-exports.deleteApi = async (req, res) => {
-    try {
-        let id = req.params.userid
-            const deletedUser = await Usermodel.findOneAndUpdate(
+// exports.deleteApi = async (req, res) => {
+//     try {
+//         let id = req.params.userid
+//             const deletedUser = await Usermodel.findOneAndUpdate(
 
-            { _id: id },
-            { $set: { isdeleted: true } },
-            { new: true }
+//             { _id: id },
+//             { $set: { isdeleted: true } },
+//             { new: true }
 
-        )
+//         )
         
-        return res.status(200).send({ status: true, msg: "Delete Api Created", data: deletedUser })
-    }
-    catch (err) { return errorhandling(err, res) }
+//         return res.status(200).send({ status: true, msg: "Delete Api Created", data: deletedUser })
+//     }
+//     catch (err) { return errorhandling(err, res) }
 
-}
+// }
 

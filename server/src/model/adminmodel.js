@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
 const { ValidName, ValidPassword, ValidUserName } = require("../Validation/validation.js");
 
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
 
-    profileImg: { type: String, trim: true },
-    adminid :{
-        type: String, trim: true
-    },
-
+   
     name: {
         type: String, required: [true, "Please provide the Name"],
         validate: [ValidName, "Please provide the User Valid Name"], trim: true
@@ -27,7 +23,7 @@ const userSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('admin', adminSchema)
 
 
 
