@@ -68,4 +68,23 @@ exports.Loginadmin = async (req, res) => {
     catch (err) { return  errorhandling(err,res)}
 }
 
+exports.deleteuserapi = async(req,res) =>{
+    try{
+        let id = req.params.userid 
+        const deleteduser = await Usermodel.findOneAndUpdate(
+            { _id:id },
+
+            { $set: { isdeleted: true } },
+            {
+                new: true
+            }
+        )
+        return res.status(200).send({ Status: true , data: deleteduser })
+    }
+    catch (err) { return errorhandling(err, res) }
+}
+
+    
+
+
 
