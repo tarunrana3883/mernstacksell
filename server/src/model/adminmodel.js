@@ -3,6 +3,8 @@ const { ValidName, ValidPassword, ValidUserName } = require("../Validation/valid
 
 const adminSchema = new mongoose.Schema({
 
+    adminid : {type: String , trim:true} ,
+
    
     name: {
         type: String, required: [true, "Please provide the Name"],
