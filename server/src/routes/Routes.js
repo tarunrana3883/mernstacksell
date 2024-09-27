@@ -10,15 +10,15 @@ const {adminAuthenticate, adminAuthorisation} = require("../middleware/adminauth
 // users apis
 router.post('/createUserdata',upload.single("profileImg"), createuser)
 router.post('/LogInUser',upload.single(), LogInUser)
-// router.put('/updateApi/:userid',upload.single() , authenticate , Authorisation, updateApi)
+router.put('/updateApi/:userid',upload.single() , authenticate , Authorisation, updateApi)
 
 
 // admin apis
-// router.post('/creatadmin',upload.single(), creatadmin)
+router.post('/creatadmin',upload.single(), creatadmin)
 router.get('/getalluserdata', adminAuthenticate  , getApI)
 router.post('/Loginadmin',upload.single(), Loginadmin)
 
-// router.delete('/deleteUserApi/:userid',adminAuthenticate,adminAuthorisation,deleteuserapi)
+router.delete('/deleteUserApi/:userid',adminAuthenticate,adminAuthorisation,deleteuserapi)
 
 router.all('/*', (req, res) => {
     return res.status(404).send({ status: false, msg: "Invalid URL" });
