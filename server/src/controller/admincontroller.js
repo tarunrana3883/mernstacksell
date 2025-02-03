@@ -1,5 +1,5 @@
 const { errorhandling } = require('../Errorhandling/errorhandling.js')
-const adminmodel = require('../model/adminmodel.js')
+const adminmodel = require('../model/Usermodel.js')
 const bcrypt = require('bcrypt')
 const Usermodel = require ("../model/Usermodel.js")
 const jwt = require('jsonwebtoken')
@@ -9,7 +9,7 @@ require('dotenv').config()
 
 exports.creatadmin = async (req, res) => {
     try {
-
+        console.log('bhbjk')
         const data = req.body;
 
         if (data.password == undefined) { return res.status(400).send({ status: false, message: "provide password first!" }) }
