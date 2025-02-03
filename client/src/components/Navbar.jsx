@@ -1,4 +1,4 @@
-import Logo from '../assets/images/herballogo.jpg'
+// import Logo from '../assets/images/herballogo.jpg'
 import { Link } from 'react-router-dom'
 import DropDownMenu from './DropDownMenu'
 import { useState } from 'react'
@@ -6,9 +6,9 @@ import { useState } from 'react'
 export default function Navbar() {
 
     let menudata = [
-        { Name: 'Vedic materials', href: "/Vedicmaterials" },
-        { Name: 'Vedic practitioners', href: "/Vedicpractitioner" },
-        { Name: 'Patient Feedback', href: "/PatientFeedback" },
+        { Name: 'New Arrivals', href: "/NewArrivals" },
+        { Name: 'Sunglasses', href: "/Eyeglasses" },
+        { Name: 'Eyeglasses', href: "/Eyeglasses" },
         { Name: 'About', href: "/About" }
     ]
     const [menu, setmenu] = useState(false)
@@ -16,11 +16,13 @@ export default function Navbar() {
     const handlechange = () => {
         setmenu(!menu)
     }
-
     return (
-        <div >
+        <div>
             <nav className='bg-white flex drop-shadow-md text-2xl justify-between items-center py-3 px-5 '>
-                <Link to='/'>   <img className='h-[40px] w-[150px]' src={Logo} alt="logo" /></Link>
+                {/* <Link to='/'>   <img className='h-[40px] w-[150px]' src={Logo} alt="logo" /></Link> */}
+                <div className='text-[#333333] text-2xl font-semibold'>
+                    <Link to="/">SPECS</Link>
+                </div>
                 <div>
 
                     <ul className='hidden md:flex gap-5 uppercase menuNav text-[#333333] text-[20px] font-semibold'>
