@@ -39,7 +39,7 @@ export default function Navbar() {
 
                 <div className='flex gap-5'>
 
-                    <DropDownMenu />
+                    <DropDownMenu/>
 
                     <div onClick={() => setismenuopen(!ismenuopen)} className='gap-2'>
 
